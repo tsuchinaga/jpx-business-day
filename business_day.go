@@ -50,11 +50,6 @@ func (b *businessDay) IsHoliday(target time.Time) bool {
 		return true
 	}
 
-	// 取得した最終の休日以降は情報がないので常にfalse
-	if target.After(b.lastHoliday) {
-		return false
-	}
-
 	// 祝日一覧にあれば休日
 	targetDate := time.Date(target.Year(), target.Month(), target.Day(), 0, 0, 0, 0, time.Local)
 	_, ok := b.holidays[targetDate]
