@@ -10,23 +10,6 @@ import (
 	"time"
 )
 
-func Test_NewBusinessDay(t *testing.T) {
-	// 2021-05-05時点でのテストで、時間が経てば結果が変わるため
-	t.Skip()
-
-	bd, err := NewBusinessDay()
-	if err != nil {
-		t.Errorf("%s error: %+v\n", t.Name(), err)
-	}
-
-	wantLastHoliday := time.Date(2022, 12, 31, 0, 0, 0, 0, time.Local)
-	wantLastUpdateDate := time.Date(2021, 1, 7, 0, 0, 0, 0, time.Local)
-
-	if !reflect.DeepEqual(wantLastHoliday, bd.LastHoliday()) || !reflect.DeepEqual(wantLastUpdateDate, bd.LastUpdateDate()) {
-		t.Errorf("%s error\nwant: %+v, %+v\ngot: %+v, %+v\n", t.Name(), wantLastHoliday, wantLastUpdateDate, bd.LastHoliday(), bd.LastUpdateDate())
-	}
-}
-
 func Test_businessDay_LastUpdateDate(t *testing.T) {
 	t.Parallel()
 	tests := []struct {

@@ -11,12 +11,12 @@ import (
 	"time"
 )
 
-func NewBusinessDay() (BusinessDay, error) {
-	bd := &businessDay{url: "https://www.jpx.co.jp/corporate/about-jpx/calendar/"}
-	if err := bd.Refresh(context.Background()); err != nil {
-		return nil, err
+func NewBusinessDay() BusinessDay {
+	bd := &businessDay{
+		url:      "https://www.jpx.co.jp/corporate/about-jpx/calendar/",
+		holidays: map[time.Time]string{},
 	}
-	return bd, nil
+	return bd
 }
 
 type BusinessDay interface {
